@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoIncorrect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" style="display: inline-block; margin-bottom: 5px; font-size: 16px; color: #007BFF; text-decoration: none;">&lt; Back</a>
+    <textarea id="input" spellcheck="false" placeholder="Enter your text here..."></textarea>
+    <script>
+        // Get the textarea element
+        const input = document.getElementById('input');
+
+        // Add an event listener to the textarea element
+        input.addEventListener('input', async (event) => {
+            if (event.inputType === 'insertText' && event.data === ' ') {
+                const words = input.value.split(/\s+/);
+
+                const correctedWords = words.map((word, index) => {
+                    if (word.trim() === '') {
+                        return word; // Do not auto-correct spaces
+                    }
+                    return index % 2 === 0 ? word : 'sigma';
+                });
+                input.value = correctedWords.join(' ');
+            }
+        });
+    </script>
+</body>
+</html>

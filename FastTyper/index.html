@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastTyper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" style="display: inline-block; margin-bottom: 5px; font-size: 16px; color: #007BFF; text-decoration: none;">&lt; Back</a>
+    
+    <textarea id="text-area" placeholder="Start typing here..."></textarea>
+    <script>
+        // Get HTML Elements
+        let textArea = document.getElementById("text-area");
+
+        // Check if textArea is correctly referenced
+        if (!textArea) {
+            console.error("Element with ID 'text-area' not found.");
+        }
+
+        // Define the message
+        let message = '';
+        fetch('https://random-word-api.herokuapp.com/word?number=5000')
+            .then(response => response.json())
+            .then(data => {
+                message = data.join(' ');
+            })
+            .catch(error => console.error('Error fetching words:', error));
+
+        // Catch 'Keydown' Event
+        document.addEventListener("keydown", function(event) {
+            if (event.key !== "Backspace") {
+            typeCharacter();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Backspace") {
+                removeCharacter();
+            }
+        });
+
+        function removeCharacter() {
+            let currentValue = textArea.value;
+            textArea.value = currentValue.slice(0, -1);
+        }
+
+        // Define what happens when the event is triggered
+        function typeCharacter() {
+            let currentIndex = textArea.value.length;
+            if (currentIndex < message.length) {
+            textArea.value += message[currentIndex];
+            setTimeout(() => {
+                currentIndex = textArea.value.length;
+                if (currentIndex < message.length) {
+                textArea.value += message[currentIndex];
+                setTimeout(() => {
+                    currentIndex = textArea.value.length;
+                    if (currentIndex < message.length) {
+                    textArea.value += message[currentIndex];
+                    setTimeout(() => {
+                        currentIndex = textArea.value.length;
+                        if (currentIndex < message.length) {
+                        textArea.value += message[currentIndex];
+                        }
+                    }, 50);
+                    }
+                }, 50);
+                }
+            }, 50);
+            }
+        }
+    </script>
+    </script>
+</body>
+</html>

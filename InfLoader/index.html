@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfLoader</title>
+</head>
+<body>
+    <div id="loader" style="width: 100%; background-color: #f3f3f3; border: 1px solid #ccc;">
+        <div id="progress" style="width: 0%; height: 30px; background-color: #4caf50;"></div>
+    </div>
+
+    <script>
+        function startLoader() {
+            var progress = document.getElementById('progress');
+            var width = 0;
+            var interval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    location.reload();
+                } else {
+                    width++;
+                    progress.style.width = width + '%';
+                }
+            }, 3600);
+        }
+
+        window.onload = startLoader;
+    </script>
+</body>
+</html>

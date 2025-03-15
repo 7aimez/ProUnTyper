@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyPeasyPasswordGen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" style="display: inline-block; margin-bottom: 5px; font-size: 16px; color: #007BFF; text-decoration: none; position: absolute; top: 10px; left: 10px;">&lt; Back</a>
+    <button onclick="generatePassword()">Generate Password</button>
+    <input type="text" id="password" readonly>
+    <script>
+        function generatePassword() {
+            const charset = ['bob', '1234', '1234', '4321', 'banana', 'sigma', 'password', 'cheese', 'abc', 'penguin', 'verygood', 'doggy', 'cat', '123', 'password1', 'digger', 'nope', 'skibidi', 'easy', 'brainrot', 'simple', 'test', 'hello', 'world', 'qwerty', 'asdf', 'zxcv', 'letmein', 'welcome', 'monkey', 'dragon', 'sunshine', 'princess', 'password123'];
+            const length = 2; // Shorter password length
+            let password = Array.from({ length }, () => charset[Math.floor(Math.random() * charset.length)]).join('');
+            document.getElementById('password').value = password;
+        }
+    </script>
+</body>
+</html>
